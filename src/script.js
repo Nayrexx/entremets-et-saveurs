@@ -85,10 +85,10 @@ const galleryData = [
     },
     {
         id: 16,
-        src: 'assets/images/patisserie2.jpg',
-        title: 'Viennoiseries Premium',
-        category: 'pastries',
-        description: 'Viennoiseries fraîches et savoureuses'
+        src: 'assets/images/exotique dacquoise coco mousse mangue passion insert framboise.jpg',
+        title: 'Entremet Exotique',
+        category: 'cakes',
+        description: 'Dacquoise coco, mousse mangue passion et insert framboise'
     },
     {
         id: 17,
