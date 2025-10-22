@@ -865,8 +865,82 @@ function checkAndRevealFormulas() {
     }
 }
 
+// === HALLOWEEN THEME (Uniquement sur l'écran de chargement) ===
+function initHalloweenLoadingTheme() {
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const halloweenEnd = new Date(currentYear, 10, 1); // 1er novembre (mois 10 = novembre)
+    
+    // Activer le thème si on est avant le 1er novembre
+    if (today < halloweenEnd) {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('halloween-theme');
+            
+            // Créer le conteneur de décorations
+            const decorationsContainer = document.createElement('div');
+            decorationsContainer.className = 'halloween-loading-decorations';
+            loadingScreen.appendChild(decorationsContainer);
+            
+            // Créer la toile d'araignée
+            const web = document.createElement('div');
+            web.className = 'halloween-web';
+            loadingScreen.appendChild(web);
+            
+            // Ajouter des citrouilles flottantes
+            const pumpkins = ['🎃', '🎃', '🎃'];
+            pumpkins.forEach((emoji, index) => {
+                const pumpkin = document.createElement('div');
+                pumpkin.className = 'halloween-pumpkin';
+                pumpkin.textContent = emoji;
+                pumpkin.style.left = `${15 + index * 30}%`;
+                pumpkin.style.top = `${20 + index * 15}%`;
+                pumpkin.style.animationDelay = `${index * 2}s`;
+                decorationsContainer.appendChild(pumpkin);
+            });
+            
+            // Ajouter des fantômes
+            const ghosts = ['👻', '👻'];
+            ghosts.forEach((emoji, index) => {
+                const ghost = document.createElement('div');
+                ghost.className = 'halloween-ghost';
+                ghost.textContent = emoji;
+                ghost.style.left = `${70 + index * 15}%`;
+                ghost.style.top = `${30 + index * 20}%`;
+                ghost.style.animationDelay = `${index * 3}s`;
+                decorationsContainer.appendChild(ghost);
+            });
+            
+            // Ajouter des chauves-souris
+            const bats = ['🦇', '🦇', '🦇'];
+            bats.forEach((emoji, index) => {
+                const bat = document.createElement('div');
+                bat.className = 'halloween-bat';
+                bat.textContent = emoji;
+                bat.style.top = `${10 + index * 25}%`;
+                bat.style.animationDelay = `${index * 4}s`;
+                decorationsContainer.appendChild(bat);
+            });
+            
+            // Ajouter des araignées
+            const spiders = ['🕷️', '🕷️'];
+            spiders.forEach((emoji, index) => {
+                const spider = document.createElement('div');
+                spider.className = 'halloween-spider';
+                spider.textContent = emoji;
+                spider.style.left = `${25 + index * 50}%`;
+                spider.style.animationDelay = `${index * 5}s`;
+                decorationsContainer.appendChild(spider);
+            });
+            
+            console.log('🎃 Thème Halloween activé sur l\'écran de chargement jusqu\'au 1er novembre ! 👻');
+        }
+    }
+}
+
 // Initialiser la fonctionnalité au chargement de la page
 document.addEventListener('DOMContentLoaded', function() {
     initFormulasReveal();
     checkAndRevealFormulas();
+    initHalloweenLoadingTheme();
 });

@@ -5,6 +5,145 @@
     box-sizing: border-box;
 }
 
+/* === HALLOWEEN THEME (Uniquement sur l'écran de chargement jusqu'au 1er novembre) === */
+#loading-screen.halloween-theme {
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
+}
+
+#loading-screen.halloween-theme .loading-logo h1 {
+    color: #ffa500;
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+}
+
+#loading-screen.halloween-theme .loading-text {
+    color: #ffa500;
+}
+
+#loading-screen.halloween-theme .loading-bar {
+    background: linear-gradient(90deg, #ff6b00, #ffa500, #ff6b00);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+}
+
+.halloween-loading-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.halloween-pumpkin,
+.halloween-ghost,
+.halloween-bat,
+.halloween-spider {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.4;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.halloween-pumpkin {
+    animation: float-pumpkin 15s infinite;
+}
+
+.halloween-ghost {
+    animation: float-ghost 20s infinite;
+}
+
+.halloween-bat {
+    animation: fly-bat 12s infinite;
+}
+
+.halloween-spider {
+    animation: spider-drop 10s infinite;
+}
+
+@keyframes float-pumpkin {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-20px) rotate(-5deg);
+    }
+}
+
+@keyframes float-ghost {
+    0%, 100% {
+        transform: translateX(0) translateY(0);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateX(30px) translateY(-20px);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(0) translateY(-40px);
+        opacity: 0.3;
+    }
+    75% {
+        transform: translateX(-30px) translateY(-20px);
+        opacity: 0.4;
+    }
+}
+
+@keyframes fly-bat {
+    0% {
+        transform: translateX(-100vw) translateY(0);
+    }
+    50% {
+        transform: translateX(50vw) translateY(-100px);
+    }
+    100% {
+        transform: translateX(100vw) translateY(0);
+    }
+}
+
+@keyframes spider-drop {
+    0%, 100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(200px);
+        opacity: 0.5;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+/* Halloween web decoration pour loading screen */
+.halloween-web {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M100,10 L100,190 M10,100 L190,100 M30,30 L170,170 M170,30 L30,170" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/><circle cx="100" cy="100" r="80" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/><circle cx="100" cy="100" r="50" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/><circle cx="100" cy="100" r="20" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.3;
+}
+
 /* === ANNOUNCEMENT BANNER === */
 .announcement-banner {
     background: linear-gradient(45deg, var(--primary-color), var(--primary-dark));
