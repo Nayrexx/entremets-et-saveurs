@@ -137,19 +137,27 @@
 
     <!-- Bandeau défilant -->
     <div class="announcement-banner">
-        <a href="formules.html" class="banner-link">
+        <a href="#" onclick="openBuchePopup(); return false;" class="banner-link">
             <div class="banner-content">
                 <div class="banner-text">
-                    <i class="fas fa-star"></i>
-                    <span>NOUVEAU ! VOS COURS DE PÂTISSERIE ET ANNIVERSAIRE ENFANTS À DOMICILE !</span>
-                    <i class="fas fa-birthday-cake"></i>
-                    <span>NOUVEAU ! VOS COURS DE PÂTISSERIE ET ANNIVERSAIRE ENFANTS À DOMICILE !</span>
-                    <i class="fas fa-star"></i>
-                    <span>NOUVEAU ! VOS COURS DE PÂTISSERIE ET ANNIVERSAIRE ENFANTS À DOMICILE !</span>
-                    <i class="fas fa-birthday-cake"></i>
+                    <i class="fas fa-snowflake"></i>
+                    <span>🎄 BÛCHES DE NOËL — Réservez dès maintenant vos créations artisanales pour les fêtes ! 🎄</span>
+                    <i class="fas fa-snowflake"></i>
+                    <span>🎄 BÛCHES DE NOËL — Réservez dès maintenant vos créations artisanales pour les fêtes ! 🎄</span>
+                    <i class="fas fa-snowflake"></i>
+                    <span>🎄 BÛCHES DE NOËL — Réservez dès maintenant vos créations artisanales pour les fêtes ! 🎄</span>
+                    <i class="fas fa-snowflake"></i>
                 </div>
             </div>
         </a>
+    </div>
+
+    <!-- Pop-up Bûches de Noël -->
+    <div id="buche-popup" class="buche-popup-overlay" onclick="closeBuchePopup(event)">
+        <div class="buche-popup-content">
+            <button class="buche-popup-close" onclick="closeBuchePopup(event)">&times;</button>
+            <img src="assets/images/buche tarif.jpg" alt="Tarifs Bûches de Noël">
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -710,5 +718,10 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="src/script.js"></script>
+
+    <!-- Firebase SDK (pour charger les données admin) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+    <script src="src/firebase-loader.js"></script>
 </body>
 </html>

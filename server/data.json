@@ -1,0 +1,87 @@
+{
+  "settings": {
+    "noelMode": true,
+    "snowMode": true,
+    "bannerMode": true
+  },
+  "banner": {
+    "text": "🎄 BÛCHES DE NOËL — Réservez dès maintenant vos créations artisanales pour les fêtes ! 🎄",
+    "link": "assets/images/buche tarif.jpg",
+    "icon": "fa-snowflake"
+  },
+  "hero": {
+    "title": "Entremets",
+    "titleAccent": "& Saveurs",
+    "subtitle": "L'art de la pâtisserie artisanale à votre service",
+    "buttonText": "Découvrir nos créations"
+  },
+  "services": {
+    "title": "Nos Services",
+    "items": [
+      {
+        "icon": "fa-birthday-cake",
+        "title": "Pâtisserie",
+        "description": "Des créations sucrées pour tous vos événements"
+      },
+      {
+        "icon": "fa-utensils",
+        "title": "Traiteur",
+        "description": "Service traiteur pour vos réceptions"
+      },
+      {
+        "icon": "fa-heart",
+        "title": "Mariage",
+        "description": "Pièces montées et desserts de mariage"
+      }
+    ]
+  },
+  "about": {
+    "title": "Notre Histoire",
+    "text": "Passionnée par l'art de la pâtisserie depuis toujours, je crée pour vous des desserts uniques et savoureux.",
+    "stats": [
+      { "number": "10+", "label": "Années d'expérience" },
+      { "number": "500+", "label": "Clients satisfaits" },
+      { "number": "1000+", "label": "Créations réalisées" }
+    ]
+  },
+  "contact": {
+    "email": "contact@entremets-saveurs.fr",
+    "phone": "06 XX XX XX XX",
+    "address": "Votre ville, France"
+  },
+  "colors": {
+    "primary": "#c41e3a",
+    "secondary": "#165b33",
+    "gold": "#d4af37"
+  },
+  "gallery": [
+    {
+      "id": 1,
+      "src": "assets/images/traiteur.jpg",
+      "title": "Service Traiteur",
+      "category": "catering"
+    },
+    {
+      "id": 2,
+      "src": "assets/images/patisserie.jpg",
+      "title": "Pâtisserie Fine",
+      "category": "pastries"
+    },
+    {
+      "id": 3,
+      "src": "assets/images/mariage.jpg",
+      "title": "Wedding Cake",
+      "category": "wedding"
+    },
+    {
+      "id": 4,
+      "src": "assets/images/macaron.jpg",
+      "title": "Macarons",
+      "category": "pastries"
+    }
+  ],
+  "admin": {
+    "username": "admin",
+    "password": "entremets2024"
+  }
+}

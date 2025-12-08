@@ -396,6 +396,321 @@
     }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✨ THÈME NOËL ÉLÉGANT ✨
+   Un design subtil et raffiné pour les fêtes
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Variables Noël */
+.noel {
+    --noel-rouge: #c41e3a;
+    --noel-rouge-fonce: #8b0000;
+    --noel-vert: #228b22;
+    --noel-vert-fonce: #165b33;
+    --noel-or: #d4af37;
+    --noel-or-clair: #ffd700;
+    --noel-creme: #fffaf0;
+    --noel-bordeaux: #722f37;
+}
+
+/* === NEIGE QUI TOMBE === */
+.noel .snow-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+@keyframes snowFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* === NAVBAR NOËL === */
+.noel .navbar {
+    background: linear-gradient(135deg, var(--noel-rouge) 0%, var(--noel-rouge-fonce) 100%) !important;
+    border-bottom: none !important;
+    box-shadow: 0 4px 20px rgba(196, 30, 58, 0.3);
+}
+
+.noel .navbar::before {
+    display: none !important;
+}
+
+.noel .navbar.scrolled {
+    background: linear-gradient(135deg, var(--noel-rouge-fonce) 0%, var(--noel-bordeaux) 100%) !important;
+}
+
+.noel .nav-link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.noel .nav-link:hover,
+.noel .nav-link.active {
+    color: var(--noel-or-clair) !important;
+}
+
+.noel .nav-link::after {
+    background: var(--noel-or) !important;
+}
+
+.noel .nav-item.cta .nav-link {
+    background: var(--noel-or) !important;
+    color: var(--noel-rouge-fonce) !important;
+    border: none !important;
+    font-weight: 600;
+    text-shadow: none !important;
+}
+
+.noel .nav-item.cta .nav-link:hover {
+    background: var(--noel-or-clair) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.noel .hamburger .bar {
+    background: var(--white) !important;
+}
+
+/* === BANDEAU ANNONCE NOËL === */
+.noel .announcement-banner {
+    background: var(--noel-vert-fonce) !important;
+    border: none !important;
+    box-shadow: 0 2px 10px rgba(22, 91, 51, 0.2);
+}
+
+.noel .announcement-banner .banner-text {
+    color: white !important;
+    font-weight: 500;
+}
+
+/* === BOUTONS NOËL === */
+.noel .btn-primary {
+    background: var(--noel-rouge) !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+    transition: all 0.3s ease;
+}
+
+.noel .btn-primary:hover {
+    background: var(--noel-rouge-fonce) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196, 30, 58, 0.4);
+}
+
+/* === HERO SECTION NOËL === */
+.noel .hero-title .accent {
+    color: var(--noel-rouge) !important;
+    -webkit-text-fill-color: var(--noel-rouge) !important;
+    background: none !important;
+}
+
+/* === SERVICE CARDS NOËL === */
+.noel .service-card {
+    background: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.noel .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.15);
+}
+
+.noel .service-card h3 {
+    color: var(--noel-vert-fonce) !important;
+}
+
+.noel .service-icon {
+    color: var(--noel-rouge) !important;
+}
+
+/* === GALERIE NOËL === */
+.noel .gallery-item {
+    border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.noel .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.2);
+}
+
+/* === SECTION ABOUT NOËL === */
+.noel .about-content {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.noel .about-text h3 {
+    color: var(--noel-vert-fonce) !important;
+}
+
+.noel .stat-item,
+.noel .feature-item {
+    background: white;
+    border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.noel .stat-item:hover,
+.noel .feature-item:hover {
+    box-shadow: 0 5px 20px rgba(196, 30, 58, 0.1);
+    transform: translateY(-2px);
+}
+
+.noel .stat-number {
+    color: var(--noel-rouge) !important;
+}
+
+/* === TITRES NOËL === */
+.noel .section-title {
+    color: var(--noel-vert-fonce) !important;
+}
+
+.noel .section-title::after {
+    background: var(--noel-rouge) !important;
+}
+
+.noel .section-badge {
+    background: var(--noel-rouge) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* === FOOTER NOËL === */
+.noel footer {
+    background: var(--noel-vert-fonce) !important;
+    border: none !important;
+}
+
+.noel .footer-title {
+    color: var(--noel-or) !important;
+}
+
+.noel .footer-links a:hover {
+    color: var(--noel-or-clair) !important;
+}
+
+.noel .social-link:hover {
+    background: var(--noel-rouge) !important;
+}
+
+/* === LOADING SCREEN NOËL === */
+.noel .loading-logo h1 {
+    color: var(--noel-rouge) !important;
+}
+
+/* === SCROLL TO TOP NOËL === */
+.noel .scroll-top {
+    background: var(--noel-rouge) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+}
+
+.noel .scroll-top:hover {
+    background: var(--noel-rouge-fonce) !important;
+    transform: translateY(-3px);
+}
+
+/* === POP-UP BÛCHES DE NOËL === */
+.buche-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.buche-popup-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.buche-popup-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    animation: popupZoom 0.3s ease;
+}
+
+@keyframes popupZoom {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.buche-popup-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.buche-popup-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    background: var(--noel-rouge, #c41e3a);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.buche-popup-close:hover {
+    background: #8b0000;
+    transform: scale(1.1);
+}
+
 /* === FORMULES PAGE STYLES === */
 .formules-hero {
     background: linear-gradient(135deg, var(--light-gray), rgba(245, 230, 211, 0.8));

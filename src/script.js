@@ -4,6 +4,73 @@ let galleryImages = [];
 let isLoading = false;
 let navbarHeight = 0;
 
+// === ADMIN SETTINGS CHECK ===
+function checkAdminSettings() {
+    // Check Noel mode
+    const noelMode = localStorage.getItem('noel_mode');
+    if (noelMode === 'false') {
+        document.body.classList.remove('noel');
+        const snowOverlay = document.querySelector('.snow-overlay');
+        if (snowOverlay) snowOverlay.remove();
+        return false;
+    }
+    
+    // Check Snow mode
+    const snowMode = localStorage.getItem('snow_mode');
+    if (snowMode === 'false') {
+        const snowOverlay = document.querySelector('.snow-overlay');
+        if (snowOverlay) snowOverlay.style.display = 'none';
+    }
+    
+    // Check Banner mode
+    const bannerMode = localStorage.getItem('banner_mode');
+    const banner = document.querySelector('.announcement-banner');
+    if (banner && bannerMode === 'false') {
+        banner.style.display = 'none';
+    }
+    
+    // Update banner text if set
+    const bannerText = localStorage.getItem('banner_text');
+    if (bannerText && banner) {
+        const spans = banner.querySelectorAll('.banner-text span');
+        spans.forEach(span => {
+            span.textContent = bannerText;
+        });
+    }
+    
+    // Update banner link if set
+    const bannerLink = localStorage.getItem('banner_link');
+    if (bannerLink) {
+        // Update the popup image src
+        const popupImg = document.querySelector('#buche-popup img');
+        if (popupImg) {
+            popupImg.src = bannerLink;
+        }
+    }
+    
+    return true;
+}
+
+// === POP-UP BÛCHES DE NOËL ===
+function openBuchePopup() {
+    const popup = document.getElementById('buche-popup');
+    if (popup) {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeBuchePopup(event) {
+    const popup = document.getElementById('buche-popup');
+    if (popup) {
+        // Fermer si on clique sur l'overlay ou le bouton close
+        if (!event || event.target === popup || event.target.classList.contains('buche-popup-close')) {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+}
+
 // === GALLERY DATA ===
 const galleryData = [
     {
@@ -104,39 +171,164 @@ const galleryData = [
         category: 'macarons',
         description: 'Macarons élégants aux saveurs sophistiquées'
     }
+    ,
+    // Additional images present in assets/images
+    {
+        id: 19,
+        src: 'assets/images/patisserie2.jpg',
+        title: 'Pâtisseries Variées',
+        category: 'pastries',
+        description: 'Assortiment de pâtisseries fraîches'
+    },
+    {
+        id: 20,
+        src: 'assets/images/royal dacquoise.jpg',
+        title: 'Royal Dacquoise',
+        category: 'cakes',
+        description: 'Dacquoise royale pour amateurs de chocolat'
+    },
+    {
+        id: 21,
+        src: 'assets/images/tiramisu biscuit cuiller mousse.jpg',
+        title: 'Tiramisu Maison',
+        category: 'pastries',
+        description: 'Tiramisu onctueux aux biscuits cuillère'
+    },
+    {
+        id: 22,
+        src: 'assets/images/citron meringuie.jpg',
+        title: 'Tarte Citron Meringuée',
+        category: 'cakes',
+        description: 'Classique revisité, acidulé et sucré'
+    },
+    {
+        id: 23,
+        src: 'assets/images/bon cadeaux.jpg',
+        title: 'Bons Cadeaux',
+        category: 'shop',
+        description: 'Offrez le plaisir d\'un entremets' 
+    },
+    {
+        id: 24,
+        src: 'assets/images/3 choco biscuit .jpg',
+        title: '3 Chocolats',
+        category: 'cakes',
+        description: 'Entremet aux trois chocolats et biscuit'
+    }
 ];
 
 // === INITIALIZATION ===
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize loading screen
-    initLoadingScreen();
+    // Check admin settings first
+    const noelEnabled = checkAdminSettings();
     
-    // Initialize navigation
-    initNavigation();
+    // Activate snow effect only if noel mode is enabled
+    if (noelEnabled && !document.body.classList.contains('noel')) {
+        document.body.classList.add('noel');
+
+        // Check if snow is enabled
+        const snowMode = localStorage.getItem('snow_mode');
+        if (snowMode !== 'false') {
+            // Inject snow overlay container
+            const snow = document.createElement('div');
+            snow.className = 'snow-overlay';
+            document.body.appendChild(snow);
+
+            // Create beautiful snowflakes
+            createSnowflakes(snow, 25);
+        }
+    }
+
+    // Pop-up Bûches de Noël - Fermer avec Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeBuchePopup();
+        }
+    });
     
-    // Initialize gallery
-    initGallery();
+    // Function to create beautiful snowflakes
+    function createSnowflakes(container, count) {
+        const symbols = ['❄', '❅', '❆', '✻', '✼'];
+        
+        for (let i = 0; i < count; i++) {
+            const snowflake = document.createElement('div');
+            const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            const size = Math.random() * 14 + 8;
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 10;
+            const startX = Math.random() * 100;
+            const drift = (Math.random() - 0.5) * 100;
+            
+            snowflake.innerHTML = symbol;
+            snowflake.className = 'snowflake';
+            snowflake.style.cssText = `
+                position: absolute;
+                color: rgba(255, 255, 255, 0.9);
+                font-size: ${size}px;
+                left: ${startX}%;
+                top: -20px;
+                animation: snowFall ${duration}s linear infinite;
+                animation-delay: ${delay}s;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(200, 220, 255, 0.4);
+                z-index: 9999;
+                pointer-events: none;
+                filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
+            `;
+            
+            container.appendChild(snowflake);
+        }
+    }
     
-    // Initialize forms
-    initContactForm();
+    // Initialize loading screen (only if element exists)
+    if (document.getElementById('loading-screen')) {
+        initLoadingScreen();
+    }
     
-    // Initialize animations
-    initAnimations();
+    // Initialize navigation (only if navbar exists)
+    if (document.getElementById('navbar')) {
+        initNavigation();
+    }
+    
+    // Initialize gallery (only if gallery exists)
+    if (document.getElementById('gallery-grid')) {
+        initGallery();
+    }
+    
+    // Initialize forms (only if form exists)
+    if (document.getElementById('contact-form')) {
+        initContactForm();
+    }
+    
+    // Initialize animations (only if AOS is loaded)
+    if (typeof AOS !== 'undefined') {
+        initAnimations();
+    }
     
     // Initialize scroll effects
-    initScrollEffects();
+    if (typeof initScrollEffects === 'function') {
+        initScrollEffects();
+    }
     
     // Initialize modals
-    initModals();
+    if (typeof initModals === 'function') {
+        initModals();
+    }
     
     // Initialize back to top button
-    initBackToTop();
+    if (typeof initBackToTop === 'function') {
+        initBackToTop();
+    }
     
     // Initialize smooth scrolling
-    initSmoothScrolling();
+    if (typeof initSmoothScrolling === 'function') {
+        initSmoothScrolling();
+    }
     
     // Set navbar height
-    navbarHeight = document.querySelector('.navbar').offsetHeight;
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbarHeight = navbar.offsetHeight;
+    }
 });
 
 // === LOADING SCREEN ===
