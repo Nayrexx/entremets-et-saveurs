@@ -621,6 +621,243 @@
                 margin-left: 0;
             }
         }
+
+        /* Tabs Navigation */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            background: var(--bg);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+        }
+
+        .tab-btn:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Ateliers Management */
+        .ateliers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .atelier-manage-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .atelier-manage-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .atelier-manage-card.inactive {
+            opacity: 0.6;
+        }
+
+        .atelier-card-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            position: relative;
+        }
+
+        .atelier-card-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .atelier-card-header .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge.actif {
+            background: var(--success);
+        }
+
+        .badge.inactif {
+            background: var(--text-light);
+        }
+
+        .atelier-card-body {
+            padding: 20px;
+        }
+
+        .atelier-info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .atelier-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .atelier-info-row .label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .atelier-info-row .value {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .atelier-card-actions {
+            padding: 15px 20px;
+            background: var(--bg);
+            display: flex;
+            gap: 10px;
+        }
+
+        .atelier-card-actions .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-edit {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #6b4423;
+        }
+
+        .btn-toggle {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-toggle:hover {
+            background: #d97706;
+        }
+
+        /* Add Atelier Card */
+        .add-atelier-card {
+            background: white;
+            border: 3px dashed var(--border);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-light);
+        }
+
+        .add-atelier-card:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: rgba(196, 30, 58, 0.02);
+        }
+
+        .add-atelier-card i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .add-atelier-card span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Form in Modal */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
     </style>
 </head>
 <body>
@@ -711,56 +948,65 @@
                 </div>
             </div>
 
-            <!-- Filters -->
-            <div class="filters-bar">
-                <div class="filter-group">
-                    <label>Statut :</label>
-                    <select id="filterStatus">
-                        <option value="all">Tous</option>
-                        <option value="en-attente">En attente</option>
-                        <option value="confirme">Confirmées</option>
-                        <option value="annule">Annulées</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Type :</label>
-                    <select id="filterType">
-                        <option value="all">Tous</option>
-                        <option value="adultes">Adultes</option>
-                        <option value="enfants">Enfants</option>
-                        <option value="teambuilding">Team Building</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>Date :</label>
-                    <input type="date" id="filterDate">
-                </div>
-                <button class="btn btn-refresh" onclick="loadReservations()">
-                    <i class="fas fa-sync-alt"></i> Actualiser
+            <!-- Tabs Navigation -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('reservations')">
+                    <i class="fas fa-calendar-check"></i> Réservations
+                </button>
+                <button class="tab-btn" onclick="switchTab('gestion')">
+                    <i class="fas fa-cog"></i> Gérer les Ateliers
                 </button>
             </div>
 
-            <!-- Reservations Table -->
-            <div class="reservations-card">
-                <div class="card-header">
-                    <h2><i class="fas fa-list"></i> Réservations</h2>
-                    <span id="reservationCount">0 réservation(s)</span>
+            <!-- Tab: Reservations -->
+            <div class="tab-content active" id="tab-reservations">
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <div class="filter-group">
+                        <label>Statut :</label>
+                        <select id="filterStatus">
+                            <option value="all">Tous</option>
+                            <option value="en-attente">En attente</option>
+                            <option value="confirme">Confirmées</option>
+                            <option value="annule">Annulées</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Type :</label>
+                        <select id="filterType">
+                            <option value="all">Tous</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Date :</label>
+                        <input type="date" id="filterDate">
+                    </div>
+                    <button class="btn btn-refresh" onclick="loadReservations()">
+                        <i class="fas fa-sync-alt"></i> Actualiser
+                    </button>
                 </div>
-                <table class="reservations-table">
-                    <thead>
-                        <tr>
-                            <th>Client</th>
-                            <th>Atelier</th>
-                            <th>Date & Heure</th>
-                            <th>Participants</th>
-                            <th>Prix</th>
-                            <th>Statut</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="reservationsBody">
-                        <!-- Reservations will be loaded here -->
-                    </tbody>
+
+                <!-- Reservations Table -->
+                <div class="reservations-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-list"></i> Réservations</h2>
+                        <span id="reservationCount">0 réservation(s)</span>
+                    </div>
+                    <table class="reservations-table">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Atelier</th>
+                                <th>Date & Heure</th>
+                                <th>Participants</th>
+                                <th>Prix</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservationsBody">
+                            <!-- Reservations will be loaded here -->
+                        </tbody>
                 </table>
                 <div class="empty-state" id="emptyState" style="display: none;">
                     <i class="fas fa-inbox"></i>
@@ -768,10 +1014,30 @@
                     <p>Les nouvelles demandes apparaîtront ici</p>
                 </div>
             </div>
+            </div>
+            <!-- End Tab: Reservations -->
+
+            <!-- Tab: Gestion des Ateliers -->
+            <div class="tab-content" id="tab-gestion">
+                <div class="reservations-card" style="margin-bottom: 25px;">
+                    <div class="card-header">
+                        <h2><i class="fas fa-birthday-cake"></i> Vos Ateliers</h2>
+                        <button class="btn btn-success" onclick="openAtelierModal()">
+                            <i class="fas fa-plus"></i> Ajouter un atelier
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ateliers-grid" id="ateliersGrid">
+                    <!-- Ateliers will be loaded here -->
+                </div>
+            </div>
+            <!-- End Tab: Gestion des Ateliers -->
+
         </div>
     </div>
 
-    <!-- Modal Détails -->
+    <!-- Modal Détails Réservation -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
         <div class="modal" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -786,6 +1052,89 @@
             <div class="modal-footer" id="modalFooter">
                 <!-- Actions will be loaded here -->
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Atelier (Créer/Modifier) -->
+    <div class="modal-overlay" id="atelierModalOverlay" onclick="closeAtelierModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="atelierModalTitle"><i class="fas fa-plus-circle"></i> Nouvel Atelier</h3>
+                <button class="btn-close-modal" onclick="closeAtelierModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="atelierForm" onsubmit="saveAtelier(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="atelierId">
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-tag"></i> Nom de l'atelier *</label>
+                        <input type="text" id="atelierNom" placeholder="Ex: Atelier Macarons" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-align-left"></i> Description</label>
+                        <textarea id="atelierDescription" rows="3" placeholder="Décrivez l'atelier..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-euro-sign"></i> Prix *</label>
+                            <input type="number" id="atelierPrix" placeholder="65" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calculator"></i> Type de tarif</label>
+                            <select id="atelierTarifType">
+                                <option value="personne">Par personne</option>
+                                <option value="groupe">Par groupe (forfait)</option>
+                                <option value="devis">Sur devis</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Durée</label>
+                            <input type="text" id="atelierDuree" placeholder="Ex: 3h">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> Participants</label>
+                            <input type="text" id="atelierParticipants" placeholder="Ex: 4-8 pers.">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user-friends"></i> Min. participants</label>
+                            <input type="number" id="atelierMinPers" placeholder="1" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> Max. participants</label>
+                            <input type="number" id="atelierMaxPers" placeholder="8" min="1" value="8">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-image"></i> Image (URL)</label>
+                        <input type="url" id="atelierImage" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-toggle-on"></i> Statut</label>
+                        <select id="atelierStatut">
+                            <option value="actif">Actif (visible sur le site)</option>
+                            <option value="inactif">Inactif (masqué)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeAtelierModal()">Annuler</button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -1089,7 +1438,223 @@
 
         // Close modal with Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') {
+                closeModal();
+                closeAtelierModal();
+            }
+        });
+
+        // =====================
+        // GESTION DES ATELIERS
+        // =====================
+
+        let allAteliers = {};
+
+        // Switch Tabs
+        function switchTab(tabName) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.closest('.tab-btn').classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Load ateliers if switching to gestion
+            if (tabName === 'gestion') {
+                loadAteliers();
+            }
+        }
+
+        // Load Ateliers
+        function loadAteliers() {
+            const ref = db.ref('ateliers');
+            ref.on('value', (snapshot) => {
+                allAteliers = snapshot.val() || {};
+                renderAteliers();
+                updateFilterTypes();
+            });
+        }
+
+        // Update filter dropdown with ateliers
+        function updateFilterTypes() {
+            const select = document.getElementById('filterType');
+            select.innerHTML = '<option value="all">Tous</option>';
+            
+            Object.entries(allAteliers).forEach(([id, atelier]) => {
+                if (atelier.statut === 'actif') {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = atelier.nom;
+                    select.appendChild(option);
+                }
+            });
+        }
+
+        // Render Ateliers
+        function renderAteliers() {
+            const grid = document.getElementById('ateliersGrid');
+            grid.innerHTML = '';
+
+            const entries = Object.entries(allAteliers).sort((a, b) => a[1].nom.localeCompare(b[1].nom));
+
+            if (entries.length === 0) {
+                grid.innerHTML = `
+                    <div class="add-atelier-card" onclick="openAtelierModal()">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Créer votre premier atelier</span>
+                    </div>
+                `;
+                return;
+            }
+
+            entries.forEach(([id, atelier]) => {
+                const card = document.createElement('div');
+                card.className = `atelier-manage-card ${atelier.statut === 'inactif' ? 'inactive' : ''}`;
+                
+                let prixDisplay = '';
+                if (atelier.tarifType === 'devis') {
+                    prixDisplay = 'Sur devis';
+                } else if (atelier.tarifType === 'groupe') {
+                    prixDisplay = atelier.prix + '€ / groupe';
+                } else {
+                    prixDisplay = atelier.prix + '€ / pers.';
+                }
+
+                card.innerHTML = `
+                    <div class="atelier-card-header">
+                        <h3>${atelier.nom}</h3>
+                        <span class="badge ${atelier.statut}">${atelier.statut === 'actif' ? 'Actif' : 'Inactif'}</span>
+                    </div>
+                    <div class="atelier-card-body">
+                        <div class="atelier-info-row">
+                            <span class="label">Prix</span>
+                            <span class="value">${prixDisplay}</span>
+                        </div>
+                        <div class="atelier-info-row">
+                            <span class="label">Durée</span>
+                            <span class="value">${atelier.duree || '-'}</span>
+                        </div>
+                        <div class="atelier-info-row">
+                            <span class="label">Participants</span>
+                            <span class="value">${atelier.participants || `${atelier.minPers || 1} - ${atelier.maxPers || 8} pers.`}</span>
+                        </div>
+                    </div>
+                    <div class="atelier-card-actions">
+                        <button class="btn btn-edit" onclick="editAtelier('${id}')">
+                            <i class="fas fa-edit"></i> Modifier
+                        </button>
+                        <button class="btn btn-toggle" onclick="toggleAtelierStatus('${id}', '${atelier.statut}')">
+                            <i class="fas fa-${atelier.statut === 'actif' ? 'eye-slash' : 'eye'}"></i>
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteAtelier('${id}')" style="flex:0;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Add "new atelier" card
+            const addCard = document.createElement('div');
+            addCard.className = 'add-atelier-card';
+            addCard.onclick = () => openAtelierModal();
+            addCard.innerHTML = `
+                <i class="fas fa-plus-circle"></i>
+                <span>Ajouter un atelier</span>
+            `;
+            grid.appendChild(addCard);
+        }
+
+        // Open Atelier Modal (Create)
+        function openAtelierModal() {
+            document.getElementById('atelierModalTitle').innerHTML = '<i class="fas fa-plus-circle"></i> Nouvel Atelier';
+            document.getElementById('atelierForm').reset();
+            document.getElementById('atelierId').value = '';
+            document.getElementById('atelierModalOverlay').classList.add('active');
+        }
+
+        // Close Atelier Modal
+        function closeAtelierModal(event) {
+            if (!event || event.target === document.getElementById('atelierModalOverlay')) {
+                document.getElementById('atelierModalOverlay').classList.remove('active');
+            }
+        }
+
+        // Edit Atelier
+        function editAtelier(id) {
+            const atelier = allAteliers[id];
+            if (!atelier) return;
+
+            document.getElementById('atelierModalTitle').innerHTML = '<i class="fas fa-edit"></i> Modifier l\'atelier';
+            document.getElementById('atelierId').value = id;
+            document.getElementById('atelierNom').value = atelier.nom || '';
+            document.getElementById('atelierDescription').value = atelier.description || '';
+            document.getElementById('atelierPrix').value = atelier.prix || '';
+            document.getElementById('atelierTarifType').value = atelier.tarifType || 'personne';
+            document.getElementById('atelierDuree').value = atelier.duree || '';
+            document.getElementById('atelierParticipants').value = atelier.participants || '';
+            document.getElementById('atelierMinPers').value = atelier.minPers || 1;
+            document.getElementById('atelierMaxPers').value = atelier.maxPers || 8;
+            document.getElementById('atelierImage').value = atelier.image || '';
+            document.getElementById('atelierStatut').value = atelier.statut || 'actif';
+
+            document.getElementById('atelierModalOverlay').classList.add('active');
+        }
+
+        // Save Atelier
+        async function saveAtelier(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('atelierId').value;
+            const atelierData = {
+                nom: document.getElementById('atelierNom').value,
+                description: document.getElementById('atelierDescription').value,
+                prix: parseFloat(document.getElementById('atelierPrix').value) || 0,
+                tarifType: document.getElementById('atelierTarifType').value,
+                duree: document.getElementById('atelierDuree').value,
+                participants: document.getElementById('atelierParticipants').value,
+                minPers: parseInt(document.getElementById('atelierMinPers').value) || 1,
+                maxPers: parseInt(document.getElementById('atelierMaxPers').value) || 8,
+                image: document.getElementById('atelierImage').value,
+                statut: document.getElementById('atelierStatut').value,
+                dateModification: new Date().toISOString()
+            };
+
+            try {
+                if (id) {
+                    // Update existing
+                    await db.ref('ateliers/' + id).update(atelierData);
+                } else {
+                    // Create new
+                    atelierData.dateCreation = new Date().toISOString();
+                    await db.ref('ateliers').push(atelierData);
+                }
+                closeAtelierModal();
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue');
+            }
+        }
+
+        // Toggle Atelier Status
+        async function toggleAtelierStatus(id, currentStatus) {
+            const newStatus = currentStatus === 'actif' ? 'inactif' : 'actif';
+            await db.ref('ateliers/' + id + '/statut').set(newStatus);
+        }
+
+        // Delete Atelier
+        async function deleteAtelier(id) {
+            if (confirm('Supprimer définitivement cet atelier ?')) {
+                await db.ref('ateliers/' + id).remove();
+            }
+        }
+
+        // Load ateliers on init
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                loadAteliers();
+            }
         });
     </script>
 </body>

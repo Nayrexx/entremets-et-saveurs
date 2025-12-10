@@ -680,71 +680,11 @@
                 <p>Des expériences gourmandes pour tous les âges et toutes les occasions</p>
             </div>
 
-            <div class="ateliers-grid">
-                <!-- Atelier Adultes -->
-                <div class="atelier-card" data-aos="fade-up" data-aos-delay="0">
-                    <span class="atelier-badge">Populaire</span>
-                    <div class="atelier-image" style="background-image: url('assets/images/patisserie2.jpg')"></div>
-                    <div class="atelier-content">
-                        <div class="atelier-icon">
-                            <i class="fas fa-birthday-cake"></i>
-                        </div>
-                        <h3>Atelier Adultes</h3>
-                        <p>Découvrez les techniques professionnelles et réalisez des pâtisseries dignes des plus grands chefs.</p>
-                        <div class="atelier-details">
-                            <div class="atelier-detail"><i class="fas fa-clock"></i> 3h</div>
-                            <div class="atelier-detail"><i class="fas fa-user-friends"></i> 4-8 pers.</div>
-                            <div class="atelier-detail"><i class="fas fa-utensils"></i> Matériel fourni</div>
-                        </div>
-                        <div class="atelier-price-row">
-                            <div class="atelier-price">65€ <span>/ pers.</span></div>
-                            <a href="#reservation" class="btn-reserver"><i class="fas fa-calendar-check"></i> Réserver</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Anniversaire Enfants -->
-                <div class="atelier-card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="atelier-badge">🎈 Kids</span>
-                    <div class="atelier-image" style="background-image: url('assets/images/macaron1.jpg')"></div>
-                    <div class="atelier-content">
-                        <div class="atelier-icon">
-                            <i class="fas fa-child"></i>
-                        </div>
-                        <h3>Anniversaire Enfants</h3>
-                        <p>Offrez un anniversaire unique et gourmand ! Les enfants créent leurs propres pâtisseries.</p>
-                        <div class="atelier-details">
-                            <div class="atelier-detail"><i class="fas fa-clock"></i> 2h30</div>
-                            <div class="atelier-detail"><i class="fas fa-child"></i> 6-12 enfants</div>
-                            <div class="atelier-detail"><i class="fas fa-gift"></i> Goûter inclus</div>
-                        </div>
-                        <div class="atelier-price-row">
-                            <div class="atelier-price">180€ <span>/ groupe</span></div>
-                            <a href="#reservation" class="btn-reserver"><i class="fas fa-calendar-check"></i> Réserver</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Building -->
-                <div class="atelier-card" data-aos="fade-up" data-aos-delay="200">
-                    <span class="atelier-badge">Entreprise</span>
-                    <div class="atelier-image" style="background-image: url('assets/images/traiteur2.jpg')"></div>
-                    <div class="atelier-content">
-                        <div class="atelier-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h3>Team Building</h3>
-                        <p>Renforcez la cohésion de votre équipe autour d'un défi pâtissier ludique et délicieux.</p>
-                        <div class="atelier-details">
-                            <div class="atelier-detail"><i class="fas fa-clock"></i> 3-4h</div>
-                            <div class="atelier-detail"><i class="fas fa-users"></i> 8-20 pers.</div>
-                            <div class="atelier-detail"><i class="fas fa-trophy"></i> Challenge</div>
-                        </div>
-                        <div class="atelier-price-row">
-                            <div class="atelier-price">Sur devis</div>
-                            <a href="tel:+33644177920" class="btn-reserver"><i class="fas fa-phone"></i> Nous appeler</a>
-                        </div>
-                    </div>
+            <div class="ateliers-grid" id="ateliersGrid">
+                <!-- Les ateliers seront chargés dynamiquement depuis Firebase -->
+                <div class="loading-ateliers" style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                    Chargement des ateliers...
                 </div>
             </div>
 
@@ -765,24 +705,14 @@
                             <label><i class="fas fa-birthday-cake"></i> Type d'atelier *</label>
                             <select id="atelierType" required>
                                 <option value="">Choisissez un atelier</option>
-                                <option value="adultes">Atelier Adultes - 65€/pers.</option>
-                                <option value="enfants">Anniversaire Enfants - 180€/groupe</option>
-                                <option value="teambuilding">Team Building - Sur devis</option>
+                                <!-- Options chargées dynamiquement -->
                             </select>
                         </div>
                         <div class="form-group">
                             <label><i class="fas fa-users"></i> Nombre de participants *</label>
                             <select id="participants" required>
                                 <option value="">Nombre de personnes</option>
-                                <option value="1">1 personne</option>
-                                <option value="2">2 personnes</option>
-                                <option value="3">3 personnes</option>
-                                <option value="4">4 personnes</option>
-                                <option value="5">5 personnes</option>
-                                <option value="6">6 personnes</option>
-                                <option value="7">7 personnes</option>
-                                <option value="8">8 personnes</option>
-                                <option value="10+">Plus de 8 (nous contacter)</option>
+                                <!-- Options ajustées selon l'atelier sélectionné -->
                             </select>
                         </div>
                     </div>
@@ -932,6 +862,28 @@
         </div>
     </footer>
 
+    <!-- Firebase (doit être chargé en premier) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script>
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPTfARbFsZTdRxNA5CohEEDrLLs4Bcb5Y",
+            authDomain: "entremets-et-saveurs.firebaseapp.com",
+            databaseURL: "https://entremets-et-saveurs-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "entremets-et-saveurs",
+            storageBucket: "entremets-et-saveurs.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+        
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.database();
+    </script>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -965,60 +917,216 @@
         today.setDate(today.getDate() + 2); // Réservation minimum 2 jours à l'avance
         dateInput.min = today.toISOString().split('T')[0];
 
-        // Prix des ateliers
-        const prix = {
-            adultes: 65,
-            enfants: 180,
-            teambuilding: 0
-        };
+        // =====================
+        // CHARGEMENT DES ATELIERS
+        // =====================
+        
+        let ateliersData = {};
 
-        // Mise à jour du résumé de prix
-        function updatePriceSummary() {
-            const type = document.getElementById('atelierType').value;
-            const participants = document.getElementById('participants').value;
-            const summary = document.getElementById('priceSummary');
+        // Charger les ateliers depuis Firebase
+        function loadAteliers() {
+            db.ref('ateliers').on('value', (snapshot) => {
+                ateliersData = snapshot.val() || {};
+                renderAteliersCards();
+                updateAtelierSelect();
+            });
+        }
 
-            if (type && participants) {
-                summary.style.display = 'block';
-                
-                const labels = {
-                    adultes: 'Atelier Adultes',
-                    enfants: 'Anniversaire Enfants',
-                    teambuilding: 'Team Building'
-                };
+        // Afficher les cartes d'ateliers
+        function renderAteliersCards() {
+            const grid = document.getElementById('ateliersGrid');
+            grid.innerHTML = '';
 
-                document.getElementById('summaryAtelier').textContent = labels[type] || '-';
-                document.getElementById('summaryParticipants').textContent = participants + (participants > 1 ? ' personnes' : ' personne');
+            const activeAteliers = Object.entries(ateliersData)
+                .filter(([id, atelier]) => atelier.statut === 'actif')
+                .sort((a, b) => a[1].nom.localeCompare(b[1].nom));
 
-                let total = '-';
-                if (type === 'adultes') {
-                    const nbPers = parseInt(participants) || 0;
-                    if (nbPers > 0 && nbPers <= 8) {
-                        total = (nbPers * prix.adultes) + '€';
-                    } else if (participants === '10+') {
-                        total = 'Sur devis';
-                    }
-                } else if (type === 'enfants') {
-                    total = prix.enfants + '€ (forfait groupe)';
-                } else if (type === 'teambuilding') {
-                    total = 'Sur devis';
+            if (activeAteliers.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
+                        <i class="fas fa-calendar-times" style="font-size: 3rem; margin-bottom: 15px; display: block; opacity: 0.5;"></i>
+                        <h3 style="margin-bottom: 10px;">Aucun atelier disponible</h3>
+                        <p>Les ateliers seront bientôt disponibles. Contactez-nous pour plus d'informations.</p>
+                        <a href="tel:+33644177920" style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: var(--atelier-primary); color: white; text-decoration: none; border-radius: 10px;">
+                            <i class="fas fa-phone"></i> Nous appeler
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+
+            activeAteliers.forEach(([id, atelier], index) => {
+                const card = document.createElement('div');
+                card.className = 'atelier-card';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index * 100).toString());
+
+                // Déterminer le prix à afficher
+                let prixDisplay = '';
+                let prixSuffix = '';
+                if (atelier.tarifType === 'devis') {
+                    prixDisplay = 'Sur devis';
+                    prixSuffix = '';
+                } else if (atelier.tarifType === 'groupe') {
+                    prixDisplay = atelier.prix + '€';
+                    prixSuffix = '/ groupe';
+                } else {
+                    prixDisplay = atelier.prix + '€';
+                    prixSuffix = '/ pers.';
                 }
 
-                document.getElementById('summaryTotal').textContent = total;
-            } else {
-                summary.style.display = 'none';
+                // Image par défaut si non définie
+                const imageUrl = atelier.image || 'assets/images/patisserie2.jpg';
+
+                // Bouton selon le type de tarif
+                let actionButton = '';
+                if (atelier.tarifType === 'devis') {
+                    actionButton = `<a href="tel:+33644177920" class="btn-reserver"><i class="fas fa-phone"></i> Nous appeler</a>`;
+                } else {
+                    actionButton = `<a href="#reservation" class="btn-reserver" onclick="selectAtelier('${id}')"><i class="fas fa-calendar-check"></i> Réserver</a>`;
+                }
+
+                card.innerHTML = `
+                    <div class="atelier-image" style="background-image: url('${imageUrl}')"></div>
+                    <div class="atelier-content">
+                        <div class="atelier-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <h3>${atelier.nom}</h3>
+                        <p>${atelier.description || 'Découvrez cet atelier unique et gourmand.'}</p>
+                        <div class="atelier-details">
+                            <div class="atelier-detail"><i class="fas fa-clock"></i> ${atelier.duree || '3h'}</div>
+                            <div class="atelier-detail"><i class="fas fa-user-friends"></i> ${atelier.participants || `${atelier.minPers || 1}-${atelier.maxPers || 8} pers.`}</div>
+                            <div class="atelier-detail"><i class="fas fa-utensils"></i> Matériel fourni</div>
+                        </div>
+                        <div class="atelier-price-row">
+                            <div class="atelier-price">${prixDisplay} ${prixSuffix ? `<span>${prixSuffix}</span>` : ''}</div>
+                            ${actionButton}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Réinitialiser AOS pour les nouvelles cartes
+            if (typeof AOS !== 'undefined') {
+                AOS.refresh();
             }
         }
 
-        document.getElementById('atelierType').addEventListener('change', updatePriceSummary);
+        // Mettre à jour le select du formulaire
+        function updateAtelierSelect() {
+            const select = document.getElementById('atelierType');
+            select.innerHTML = '<option value="">Choisissez un atelier</option>';
+
+            const activeAteliers = Object.entries(ateliersData)
+                .filter(([id, atelier]) => atelier.statut === 'actif' && atelier.tarifType !== 'devis')
+                .sort((a, b) => a[1].nom.localeCompare(b[1].nom));
+
+            activeAteliers.forEach(([id, atelier]) => {
+                let prixInfo = '';
+                if (atelier.tarifType === 'groupe') {
+                    prixInfo = ` - ${atelier.prix}€/groupe`;
+                } else {
+                    prixInfo = ` - ${atelier.prix}€/pers.`;
+                }
+
+                const option = document.createElement('option');
+                option.value = id;
+                option.textContent = atelier.nom + prixInfo;
+                option.dataset.prix = atelier.prix;
+                option.dataset.tarifType = atelier.tarifType;
+                option.dataset.minPers = atelier.minPers || 1;
+                option.dataset.maxPers = atelier.maxPers || 8;
+                select.appendChild(option);
+            });
+        }
+
+        // Sélectionner un atelier depuis la carte
+        function selectAtelier(id) {
+            const select = document.getElementById('atelierType');
+            select.value = id;
+            updateParticipantsOptions();
+            updatePriceSummary();
+        }
+
+        // Mettre à jour les options de participants selon l'atelier
+        function updateParticipantsOptions() {
+            const select = document.getElementById('atelierType');
+            const participantsSelect = document.getElementById('participants');
+            const selectedOption = select.options[select.selectedIndex];
+
+            participantsSelect.innerHTML = '<option value="">Nombre de personnes</option>';
+
+            if (!selectedOption || !selectedOption.value) return;
+
+            const minPers = parseInt(selectedOption.dataset.minPers) || 1;
+            const maxPers = parseInt(selectedOption.dataset.maxPers) || 8;
+
+            for (let i = minPers; i <= maxPers; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i + (i > 1 ? ' personnes' : ' personne');
+                participantsSelect.appendChild(option);
+            }
+
+            // Option pour plus de participants
+            const optionPlus = document.createElement('option');
+            optionPlus.value = 'plus';
+            optionPlus.textContent = `Plus de ${maxPers} (nous contacter)`;
+            participantsSelect.appendChild(optionPlus);
+        }
+
+        document.getElementById('atelierType').addEventListener('change', () => {
+            updateParticipantsOptions();
+            updatePriceSummary();
+        });
+
+        // Mise à jour du résumé de prix
+        function updatePriceSummary() {
+            const select = document.getElementById('atelierType');
+            const participants = document.getElementById('participants').value;
+            const summary = document.getElementById('priceSummary');
+            const selectedOption = select.options[select.selectedIndex];
+
+            if (!selectedOption || !selectedOption.value || !participants) {
+                summary.style.display = 'none';
+                return;
+            }
+
+            summary.style.display = 'block';
+            const atelier = ateliersData[selectedOption.value];
+            
+            if (!atelier) return;
+
+            document.getElementById('summaryAtelier').textContent = atelier.nom;
+            document.getElementById('summaryParticipants').textContent = participants === 'plus' ? 'Plus de ' + atelier.maxPers : participants + (parseInt(participants) > 1 ? ' personnes' : ' personne');
+
+            let total = '-';
+            if (participants === 'plus') {
+                total = 'Sur devis';
+            } else if (atelier.tarifType === 'groupe') {
+                total = atelier.prix + '€ (forfait groupe)';
+            } else {
+                total = (parseInt(participants) * atelier.prix) + '€';
+            }
+
+            document.getElementById('summaryTotal').textContent = total;
+        }
+
         document.getElementById('participants').addEventListener('change', updatePriceSummary);
 
         // Soumission du formulaire
         document.getElementById('reservationForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            const atelierSelect = document.getElementById('atelierType');
+            const atelierId = atelierSelect.value;
+            const atelier = ateliersData[atelierId];
+
             const formData = {
-                type: document.getElementById('atelierType').value,
+                type: atelierId,
+                typeNom: atelier ? atelier.nom : 'Inconnu',
                 participants: document.getElementById('participants').value,
                 date: document.getElementById('dateAtelier').value,
                 creneau: document.getElementById('creneau').value,
@@ -1031,11 +1139,15 @@
             };
 
             // Calcul du prix estimé
-            if (formData.type === 'adultes') {
-                const nb = parseInt(formData.participants) || 0;
-                formData.prixEstime = nb <= 8 ? nb * prix.adultes : 'Sur devis';
-            } else if (formData.type === 'enfants') {
-                formData.prixEstime = prix.enfants;
+            if (atelier) {
+                const nbPers = parseInt(formData.participants) || 0;
+                if (formData.participants === 'plus') {
+                    formData.prixEstime = 'Sur devis';
+                } else if (atelier.tarifType === 'groupe') {
+                    formData.prixEstime = atelier.prix;
+                } else {
+                    formData.prixEstime = nbPers * atelier.prix;
+                }
             } else {
                 formData.prixEstime = 'Sur devis';
             }
@@ -1088,28 +1200,11 @@
             document.getElementById('reservationForm').style.display = 'block';
             document.getElementById('confirmationMessage').style.display = 'none';
             document.getElementById('priceSummary').style.display = 'none';
+            document.getElementById('participants').innerHTML = '<option value="">Nombre de personnes</option>';
         }
-    </script>
-    
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-    <script>
-        // Configuration Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPTfARbFsZTdRxNA5CohEEDrLLs4Bcb5Y",
-            authDomain: "entremets-et-saveurs.firebaseapp.com",
-            databaseURL: "https://entremets-et-saveurs-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "entremets-et-saveurs",
-            storageBucket: "entremets-et-saveurs.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef123456"
-        };
-        
-        // Initialize Firebase
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
+
+        // Charger les ateliers au démarrage
+        loadAteliers();
     </script>
     
     <script src="src/script.js"></script>
