@@ -6,17 +6,6 @@ let navbarHeight = 0;
 
 // === POP-UP BÛCHES AUTO (après chargement) ===
 function showBuchesPopup() {
-    // Vérifier si l'utilisateur a choisi de ne plus voir aujourd'hui
-    const dontShow = localStorage.getItem('buchesPopupDontShow');
-    if (dontShow) {
-        const savedDate = new Date(dontShow);
-        const today = new Date();
-        // Si c'est le même jour, ne pas afficher
-        if (savedDate.toDateString() === today.toDateString()) {
-            return;
-        }
-    }
-    
     // Afficher la popup après un délai
     setTimeout(() => {
         const popup = document.getElementById('buches-popup');
@@ -36,11 +25,7 @@ function closeBuchesPopup() {
 }
 
 function setDontShowAgain(checked) {
-    if (checked) {
-        localStorage.setItem('buchesPopupDontShow', new Date().toISOString());
-    } else {
-        localStorage.removeItem('buchesPopupDontShow');
-    }
+    // Ne rien faire - la popup s'affiche toujours
 }
 
 // Fermer popup en cliquant à l'extérieur

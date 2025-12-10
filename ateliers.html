@@ -402,6 +402,212 @@
                 padding: 30px 20px;
             }
         }
+
+        /* Formulaire de réservation */
+        .reservation-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--atelier-text);
+            font-size: 0.95rem;
+        }
+
+        .form-group label i {
+            color: var(--atelier-primary);
+            margin-right: 8px;
+            width: 18px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--atelier-accent);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-separator {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .form-separator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e5e5e5;
+        }
+
+        .form-separator span {
+            background: white;
+            padding: 0 20px;
+            position: relative;
+            color: var(--atelier-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-price-summary {
+            background: linear-gradient(135deg, #fef9f3, #fff5eb);
+            border: 2px solid var(--atelier-primary);
+            border-radius: 16px;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+
+        .price-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: var(--atelier-text);
+        }
+
+        .price-line.total {
+            border-top: 2px solid var(--atelier-primary);
+            margin-top: 10px;
+            padding-top: 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--atelier-accent);
+        }
+
+        .btn-submit-reservation {
+            width: 100%;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, var(--atelier-accent), #a01830);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-submit-reservation:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--atelier-text-light);
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        .form-note i {
+            color: var(--atelier-primary);
+            margin-right: 5px;
+        }
+
+        /* Confirmation */
+        .confirmation-message {
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .confirmation-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .confirmation-icon i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .confirmation-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--atelier-text);
+            margin-bottom: 15px;
+        }
+
+        .confirmation-message p {
+            color: var(--atelier-text-light);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+
+        .btn-new-reservation {
+            background: var(--atelier-secondary);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-new-reservation:hover {
+            background: var(--atelier-accent);
+        }
     </style>
 </head>
 <body class="noel">
@@ -552,7 +758,112 @@
                     </div>
                 </div>
                 
-                <div class="simplybook-container" id="simplybook-widget"></div>
+                <!-- Formulaire de réservation -->
+                <form id="reservationForm" class="reservation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-birthday-cake"></i> Type d'atelier *</label>
+                            <select id="atelierType" required>
+                                <option value="">Choisissez un atelier</option>
+                                <option value="adultes">Atelier Adultes - 65€/pers.</option>
+                                <option value="enfants">Anniversaire Enfants - 180€/groupe</option>
+                                <option value="teambuilding">Team Building - Sur devis</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-users"></i> Nombre de participants *</label>
+                            <select id="participants" required>
+                                <option value="">Nombre de personnes</option>
+                                <option value="1">1 personne</option>
+                                <option value="2">2 personnes</option>
+                                <option value="3">3 personnes</option>
+                                <option value="4">4 personnes</option>
+                                <option value="5">5 personnes</option>
+                                <option value="6">6 personnes</option>
+                                <option value="7">7 personnes</option>
+                                <option value="8">8 personnes</option>
+                                <option value="10+">Plus de 8 (nous contacter)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Date souhaitée *</label>
+                            <input type="date" id="dateAtelier" required min="">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clock"></i> Créneau horaire *</label>
+                            <select id="creneau" required>
+                                <option value="">Choisissez un créneau</option>
+                                <option value="09:00">9h00 - 12h00 (Matin)</option>
+                                <option value="14:00">14h00 - 17h00 (Après-midi)</option>
+                                <option value="autre">Autre (préciser dans le message)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-separator">
+                        <span>Vos coordonnées</span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Nom complet *</label>
+                            <input type="text" id="nomClient" placeholder="Votre nom et prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Téléphone *</label>
+                            <input type="tel" id="telClient" placeholder="06 XX XX XX XX" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email *</label>
+                        <input type="email" id="emailClient" placeholder="votre@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Message / Demandes particulières</label>
+                        <textarea id="messageClient" rows="4" placeholder="Allergies, occasion spéciale, questions..."></textarea>
+                    </div>
+                    
+                    <div class="form-price-summary" id="priceSummary" style="display: none;">
+                        <div class="price-line">
+                            <span>Atelier sélectionné :</span>
+                            <span id="summaryAtelier">-</span>
+                        </div>
+                        <div class="price-line">
+                            <span>Participants :</span>
+                            <span id="summaryParticipants">-</span>
+                        </div>
+                        <div class="price-line total">
+                            <span>Estimation :</span>
+                            <span id="summaryTotal">-</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit-reservation">
+                        <i class="fas fa-paper-plane"></i> Envoyer ma demande de réservation
+                    </button>
+                    
+                    <p class="form-note">
+                        <i class="fas fa-info-circle"></i>
+                        Nous vous recontacterons sous 24h pour confirmer votre réservation
+                    </p>
+                </form>
+                
+                <!-- Message de confirmation -->
+                <div id="confirmationMessage" class="confirmation-message" style="display: none;">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Demande envoyée avec succès !</h3>
+                    <p>Merci pour votre demande de réservation. Nous vous contacterons très rapidement pour confirmer votre atelier.</p>
+                    <button onclick="resetForm()" class="btn-new-reservation">
+                        <i class="fas fa-plus"></i> Nouvelle réservation
+                    </button>
+                </div>
             </section>
 
             <!-- Contact rapide -->
@@ -647,44 +958,158 @@
                 document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('dateAtelier');
+        const today = new Date();
+        today.setDate(today.getDate() + 2); // Réservation minimum 2 jours à l'avance
+        dateInput.min = today.toISOString().split('T')[0];
+
+        // Prix des ateliers
+        const prix = {
+            adultes: 65,
+            enfants: 180,
+            teambuilding: 0
+        };
+
+        // Mise à jour du résumé de prix
+        function updatePriceSummary() {
+            const type = document.getElementById('atelierType').value;
+            const participants = document.getElementById('participants').value;
+            const summary = document.getElementById('priceSummary');
+
+            if (type && participants) {
+                summary.style.display = 'block';
+                
+                const labels = {
+                    adultes: 'Atelier Adultes',
+                    enfants: 'Anniversaire Enfants',
+                    teambuilding: 'Team Building'
+                };
+
+                document.getElementById('summaryAtelier').textContent = labels[type] || '-';
+                document.getElementById('summaryParticipants').textContent = participants + (participants > 1 ? ' personnes' : ' personne');
+
+                let total = '-';
+                if (type === 'adultes') {
+                    const nbPers = parseInt(participants) || 0;
+                    if (nbPers > 0 && nbPers <= 8) {
+                        total = (nbPers * prix.adultes) + '€';
+                    } else if (participants === '10+') {
+                        total = 'Sur devis';
+                    }
+                } else if (type === 'enfants') {
+                    total = prix.enfants + '€ (forfait groupe)';
+                } else if (type === 'teambuilding') {
+                    total = 'Sur devis';
+                }
+
+                document.getElementById('summaryTotal').textContent = total;
+            } else {
+                summary.style.display = 'none';
+            }
+        }
+
+        document.getElementById('atelierType').addEventListener('change', updatePriceSummary);
+        document.getElementById('participants').addEventListener('change', updatePriceSummary);
+
+        // Soumission du formulaire
+        document.getElementById('reservationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                type: document.getElementById('atelierType').value,
+                participants: document.getElementById('participants').value,
+                date: document.getElementById('dateAtelier').value,
+                creneau: document.getElementById('creneau').value,
+                nom: document.getElementById('nomClient').value,
+                telephone: document.getElementById('telClient').value,
+                email: document.getElementById('emailClient').value,
+                message: document.getElementById('messageClient').value,
+                dateCreation: new Date().toISOString(),
+                statut: 'en-attente'
+            };
+
+            // Calcul du prix estimé
+            if (formData.type === 'adultes') {
+                const nb = parseInt(formData.participants) || 0;
+                formData.prixEstime = nb <= 8 ? nb * prix.adultes : 'Sur devis';
+            } else if (formData.type === 'enfants') {
+                formData.prixEstime = prix.enfants;
+            } else {
+                formData.prixEstime = 'Sur devis';
+            }
+
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            btn.disabled = true;
+
+            try {
+                // Enregistrement dans Firebase
+                if (typeof firebase !== 'undefined' && firebase.database) {
+                    const db = firebase.database();
+                    await db.ref('reservations-ateliers').push(formData);
+                    
+                    // Afficher confirmation
+                    document.getElementById('reservationForm').style.display = 'none';
+                    document.getElementById('confirmationMessage').style.display = 'block';
+                } else {
+                    // Fallback si Firebase n'est pas dispo : mailto
+                    const subject = encodeURIComponent(`Réservation Atelier - ${formData.nom}`);
+                    const body = encodeURIComponent(
+                        `Nouvelle demande de réservation d'atelier\n\n` +
+                        `Type: ${formData.type}\n` +
+                        `Participants: ${formData.participants}\n` +
+                        `Date souhaitée: ${formData.date}\n` +
+                        `Créneau: ${formData.creneau}\n\n` +
+                        `Nom: ${formData.nom}\n` +
+                        `Téléphone: ${formData.telephone}\n` +
+                        `Email: ${formData.email}\n\n` +
+                        `Message: ${formData.message || 'Aucun'}\n\n` +
+                        `Prix estimé: ${formData.prixEstime}€`
+                    );
+                    window.location.href = `mailto:entremets-et-saveurs@orange.fr?subject=${subject}&body=${body}`;
+                    
+                    document.getElementById('reservationForm').style.display = 'none';
+                    document.getElementById('confirmationMessage').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue. Veuillez nous contacter par téléphone.');
+            }
+
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer ma demande de réservation';
+            btn.disabled = false;
+        });
+
+        // Reset du formulaire
+        function resetForm() {
+            document.getElementById('reservationForm').reset();
+            document.getElementById('reservationForm').style.display = 'block';
+            document.getElementById('confirmationMessage').style.display = 'none';
+            document.getElementById('priceSummary').style.display = 'none';
+        }
     </script>
     
-    <!-- Simplybook Widget -->
-    <script src="//widget.simplybook.it/v2/widget/widget.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script>
-        var widget = new SimplybookWidget({
-            "widget_type": "iframe",
-            "url": "https://entremetsetsaveurs.simplybook.it",
-            "theme": "default",
-            "theme_settings": {
-                "timeline_hide_unavailable": "1",
-                "hide_past_days": "0",
-                "timeline_show_end_time": "0",
-                "timeline_modern_display": "as_slots",
-                "sb_base_color": "#c41e3a",
-                "display_item_mode": "block",
-                "booking_nav_bg_color": "#c41e3a",
-                "body_bg_color": "#faf8f5",
-                "sb_review_image": "2",
-                "dark_font_color": "#3d3d3d",
-                "light_font_color": "#ffffff",
-                "btn_color_1": "#8b5a3c",
-                "sb_company_label_color": "#ffffff",
-                "hide_img_mode": "0",
-                "show_sidebar": "1",
-                "sb_busy": "#e0e0e0",
-                "sb_available": "#d6ebff"
-            },
-            "timeline": "modern",
-            "datepicker": "top_calendar",
-            "is_rtl": false,
-            "app_config": {
-                "clear_session": 0,
-                "allow_switch_to_ada": 0,
-                "predefined": { "provider": "2" }
-            },
-            "container_id": "simplybook-widget"
-        });
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCPTfARbFsZTdRxNA5CohEEDrLLs4Bcb5Y",
+            authDomain: "entremets-et-saveurs.firebaseapp.com",
+            databaseURL: "https://entremets-et-saveurs-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "entremets-et-saveurs",
+            storageBucket: "entremets-et-saveurs.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+        
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
     </script>
     
     <script src="src/script.js"></script>
