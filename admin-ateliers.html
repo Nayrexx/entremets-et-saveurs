@@ -858,6 +858,225 @@
         .btn-success:hover {
             background: #16a34a;
         }
+
+        /* Image Guide Styles */
+        .image-input-wrapper {
+            position: relative;
+        }
+
+        .btn-help-image {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-help-image:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Guide Modal */
+        .guide-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .guide-overlay.active {
+            display: flex;
+        }
+
+        .guide-modal {
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            animation: modalIn 0.3s ease;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .guide-header i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .guide-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .guide-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .guide-steps {
+            padding: 25px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        .guide-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .guide-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-content a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step-content code {
+            background: #f3f4f6;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        .step-image {
+            margin-top: 12px;
+            background: #f9fafb;
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-image i {
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .step-image p {
+            font-size: 0.85rem;
+        }
+
+        .guide-footer {
+            padding: 20px 25px;
+            background: var(--bg);
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-imgbb {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-imgbb:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-close-guide {
+            background: var(--text-light);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-close-guide:hover {
+            background: #4b5563;
+        }
+
+        .tip-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+
+        .tip-box strong {
+            color: #92400e;
+        }
+
+        .tip-box p {
+            color: #78350f;
+            font-size: 0.85rem;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -1117,7 +1336,12 @@
 
                     <div class="form-group">
                         <label><i class="fas fa-image"></i> Image (URL)</label>
-                        <input type="url" id="atelierImage" placeholder="https://...">
+                        <div class="image-input-wrapper">
+                            <input type="url" id="atelierImage" placeholder="https://i.ibb.co/xxxxx/image.jpg" style="padding-right: 130px;">
+                            <button type="button" class="btn-help-image" onclick="openImageGuide()">
+                                <i class="fas fa-question-circle"></i> Comment faire ?
+                            </button>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -1135,6 +1359,67 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Guide ImgBB Modal -->
+    <div class="guide-overlay" id="guideOverlay" onclick="closeImageGuide(event)">
+        <div class="guide-modal" onclick="event.stopPropagation()">
+            <div class="guide-header">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Comment héberger une image ?</h3>
+                <p>Guide rapide avec ImgBB (gratuit)</p>
+            </div>
+            
+            <div class="guide-steps">
+                <div class="guide-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Ouvrir ImgBB</h4>
+                        <p>Cliquez sur le bouton ci-dessous pour ouvrir <strong>ImgBB</strong> dans un nouvel onglet. C'est un service gratuit et sans inscription.</p>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Uploader votre image</h4>
+                        <p>Cliquez sur <strong>"Start uploading"</strong> ou glissez-déposez votre image directement sur la page.</p>
+                        <div class="step-image">
+                            <i class="fas fa-mouse-pointer"></i>
+                            <p>Glissez votre image ou cliquez pour parcourir</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Copier le lien direct</h4>
+                        <p>Une fois l'image uploadée, cherchez le champ <strong>"Direct link"</strong> ou <strong>"Lien direct"</strong> et copiez l'URL.</p>
+                        <div class="tip-box">
+                            <p><strong>💡 Astuce :</strong> Le lien doit ressembler à <code>https://i.ibb.co/xxxxx/image.jpg</code></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Coller dans le formulaire</h4>
+                        <p>Revenez ici et collez l'URL dans le champ <strong>"Image (URL)"</strong>. C'est tout !</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guide-footer">
+                <button class="btn-close-guide" onclick="closeImageGuide()">
+                    <i class="fas fa-times"></i> Fermer
+                </button>
+                <a href="https://imgbb.com/" target="_blank" class="btn-imgbb">
+                    <i class="fas fa-external-link-alt"></i> Ouvrir ImgBB
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1647,6 +1932,20 @@
         async function deleteAtelier(id) {
             if (confirm('Supprimer définitivement cet atelier ?')) {
                 await db.ref('ateliers/' + id).remove();
+            }
+        }
+
+        // =====================
+        // GUIDE IMAGE IMGBB
+        // =====================
+
+        function openImageGuide() {
+            document.getElementById('guideOverlay').classList.add('active');
+        }
+
+        function closeImageGuide(event) {
+            if (!event || event.target === document.getElementById('guideOverlay')) {
+                document.getElementById('guideOverlay').classList.remove('active');
             }
         }
 
