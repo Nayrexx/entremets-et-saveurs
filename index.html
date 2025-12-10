@@ -712,6 +712,37 @@
         </div>
     </div>
 
+    <!-- Popup Bûches de Noël -->
+    <div id="buches-popup" class="buches-popup-overlay">
+        <div class="buches-popup-content">
+            <button class="buches-popup-close" onclick="closeBuchesPopup()">&times;</button>
+            <div class="buches-popup-header">
+                <span class="buches-emoji">🎄</span>
+                <h2>Bûches de Noël</h2>
+                <span class="buches-emoji">🎄</span>
+            </div>
+            <div class="buches-popup-image">
+                <img src="assets/images/buche tarif.jpg" alt="Nos bûches de Noël">
+            </div>
+            <div class="buches-popup-text">
+                <p>✨ Découvrez nos créations artisanales pour les fêtes ! ✨</p>
+                <p class="buches-subtitle">Réservez dès maintenant pour Noël</p>
+            </div>
+            <div class="buches-popup-buttons">
+                <a href="tel:+33644177920" class="buches-btn buches-btn-primary">
+                    <i class="fas fa-phone"></i> Réserver par téléphone
+                </a>
+                <button class="buches-btn buches-btn-secondary" onclick="closeBuchesPopup()">
+                    Voir le site
+                </button>
+            </div>
+            <label class="buches-dont-show">
+                <input type="checkbox" id="dontShowAgain" onchange="setDontShowAgain(this.checked)">
+                Ne plus afficher aujourd'hui
+            </label>
+        </div>
+    </div>
+
     <!-- AOS CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     

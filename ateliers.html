@@ -6,393 +6,405 @@
     <title>Ateliers Pâtisserie - Entremets et Saveurs</title>
     <meta name="description" content="Participez à nos ateliers pâtisserie : adultes, anniversaires enfants et team building. Réservez en ligne vos cours de pâtisserie.">
     
-    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-    
-    <!-- Styles -->
     <link rel="stylesheet" href="src/styles.css">
-    
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Mobile Detection -->
     <script src="src/mobile-detection.js"></script>
-    
+
     <style>
-        /* Styles spécifiques pour la page ateliers */
-        .ateliers-hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            padding: 120px 0 80px;
-            position: relative;
-            overflow: hidden;
+        :root {
+            --atelier-primary: #d4a574;
+            --atelier-secondary: #8b5a3c;
+            --atelier-accent: #c41e3a;
+            --atelier-bg: #faf8f5;
+            --atelier-card: #ffffff;
+            --atelier-text: #3d3d3d;
+            --atelier-text-light: #6b6b6b;
         }
 
-        .ateliers-hero::before {
+        /* Hero Section */
+        .ateliers-hero {
+            background: linear-gradient(135deg, rgba(139, 90, 60, 0.9), rgba(196, 30, 58, 0.8)), 
+                        url('assets/images/patisserie.jpg') center/cover;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 80px;
+            position: relative;
+        }
+
+        .ateliers-hero::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1.5" fill="%23ffffff" opacity="0.15"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
-            pointer-events: none;
-        }
-
-        .ateliers-hero-content {
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 2;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, var(--atelier-bg), transparent);
         }
 
         .ateliers-hero h1 {
-            font-family: var(--font-primary);
-            font-size: 3.5rem;
-            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: white;
             margin-bottom: 1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .ateliers-hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
             max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
+            margin: 0 auto;
         }
 
-        .ateliers-hero-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .hero-icon {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .hero-icon i {
-            font-size: 2rem;
-            color: white;
-        }
-
-        /* Section principale ateliers */
+        /* Main Content */
         .ateliers-main {
-            padding: 80px 0;
-            background: var(--white);
+            background: var(--atelier-bg);
+            padding: 60px 0;
         }
 
+        .ateliers-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Titles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--atelier-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--atelier-text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Ateliers Grid */
         .ateliers-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .ateliers-info {
-            position: sticky;
-            top: 100px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
         }
 
         .atelier-card {
-            background: var(--white);
+            background: var(--atelier-card);
             border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            border: 2px solid rgba(241, 130, 100, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
             overflow: hidden;
-        }
-
-        .atelier-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary-color), var(--accent-orange));
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
         }
 
         .atelier-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(241, 130, 100, 0.2);
-            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
-        .atelier-card:hover::before {
-            transform: scaleY(1);
+        .atelier-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--atelier-accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .atelier-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .atelier-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to top, var(--atelier-card), transparent);
+        }
+
+        .atelier-content {
+            padding: 25px 30px 30px;
         }
 
         .atelier-icon {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--atelier-primary), var(--atelier-secondary));
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px rgba(241, 130, 100, 0.3);
+            margin-top: -50px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.4);
         }
 
         .atelier-icon i {
-            font-size: 1.8rem;
-            color: var(--white);
+            font-size: 1.5rem;
+            color: white;
         }
 
         .atelier-card h3 {
-            font-family: var(--font-primary);
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--atelier-text);
+            margin-bottom: 12px;
         }
 
-        .atelier-card p {
-            color: var(--medium-gray);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+        .atelier-card > .atelier-content > p {
+            color: var(--atelier-text-light);
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
-        .atelier-features {
-            list-style: none;
-            margin-bottom: 2rem;
+        .atelier-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .atelier-features li {
+        .atelier-detail {
             display: flex;
             align-items: center;
-            margin-bottom: 0.75rem;
-            color: var(--secondary-color);
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--atelier-text);
         }
 
-        .atelier-features li i {
-            color: var(--primary-color);
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
-            width: 20px;
+        .atelier-detail i {
+            color: var(--atelier-primary);
+            width: 18px;
+        }
+
+        .atelier-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
 
         .atelier-price {
-            background: var(--accent-cream);
-            color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--atelier-accent);
             font-weight: 600;
-            font-size: 1.3rem;
-            display: inline-block;
-            box-shadow: 0 3px 10px rgba(241, 130, 100, 0.2);
         }
 
-        /* Section présentation */
-        .presentation-section {
-            background: var(--light-gray);
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
+        .atelier-price span {
+            font-size: 1rem;
+            color: var(--atelier-text-light);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
         }
 
-        .presentation-container {
+        .btn-reserver {
+            background: linear-gradient(135deg, var(--atelier-accent), #a01830);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-reserver:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.4);
+        }
+
+        /* Section Réservation */
+        .reservation-section {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
+        }
+
+        .reservation-header {
             display: flex;
             align-items: center;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .presentation-image {
-            flex: 1;
-            position: relative;
+        .reservation-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--atelier-secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .presentation-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        .reservation-header h2 i {
+            color: var(--atelier-accent);
         }
 
-        .presentation-image img:hover {
-            transform: scale(1.02);
+        .reservation-note {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 12px 20px;
+            border-radius: 0 10px 10px 0;
+            color: #166534;
+            font-size: 0.95rem;
         }
 
-        .presentation-content {
-            flex: 1;
-        }
-
-        .presentation-content h2 {
-            font-family: var(--font-primary);
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .presentation-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--medium-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .presentation-signature {
-            font-family: var(--font-primary);
-            font-style: italic;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .presentation-container {
-                flex-direction: column;
-                gap: 2rem;
-                padding: 0 1rem;
-            }
-
-            .presentation-content h2 {
-                font-size: 2rem;
-            }
-
-            .presentation-content p {
-                font-size: 1rem;
-            }
-        }
-
-        /* Section réservation */
-        .booking-section {
-            background: var(--white);
-            border-radius: 25px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(241, 130, 100, 0.1);
-            position: relative;
-        }
-
-        .booking-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .booking-header h2 {
-            font-family: var(--font-primary);
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        .booking-header p {
-            font-size: 1.2rem;
-            color: var(--medium-gray);
-            max-width: 500px;
-            margin: 0 auto;
+        .reservation-note i {
+            margin-right: 8px;
         }
 
         .simplybook-container {
-            min-height: 600px;
             border-radius: 20px;
             overflow: hidden;
-            background: var(--light-gray);
-            position: relative;
+            min-height: 650px;
+            background: #f8f8f8;
+        }
+
+        /* Contact rapide */
+        .contact-rapide {
+            background: linear-gradient(135deg, var(--atelier-secondary), var(--atelier-accent));
+            border-radius: 20px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            color: white;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .contact-item a, .contact-item p {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .contact-item a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Info boxes */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .info-box i {
+            font-size: 2.5rem;
+            color: var(--atelier-primary);
+            margin-bottom: 15px;
+        }
+
+        .info-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--atelier-text);
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: var(--atelier-text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .ateliers-grid {
-                gap: 3rem;
-            }
-            
-            .ateliers-hero h1 {
-                font-size: 3rem;
-            }
-        }
-
         @media (max-width: 768px) {
+            .ateliers-hero {
+                min-height: 40vh;
+                padding: 120px 15px 60px;
+            }
+
             .ateliers-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
-            
-            .ateliers-info {
-                position: static;
-            }
-            
-            .ateliers-hero {
-                padding: 100px 0 60px;
-            }
-            
-            .ateliers-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .ateliers-hero-icons {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-            
-            .hero-icon {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .hero-icon i {
-                font-size: 1.5rem;
-            }
-            
-            .atelier-card {
-                padding: 1.5rem;
-            }
-            
-            .booking-section {
-                padding: 2rem;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .ateliers-hero h1 {
-                font-size: 2rem;
+            .reservation-section {
+                padding: 30px 20px;
+                border-radius: 20px;
             }
-            
-            .ateliers-hero p {
-                font-size: 1.1rem;
+
+            .reservation-header {
+                flex-direction: column;
+                text-align: center;
             }
-            
-            .atelier-card h3 {
-                font-size: 1.5rem;
-            }
-            
-            .booking-header h2 {
-                font-size: 2rem;
+
+            .contact-rapide {
+                padding: 30px 20px;
             }
         }
     </style>
 </head>
-<body>
+<body class="noel">
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -403,30 +415,13 @@
             </div>
             
             <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#about" class="nav-link">À Propos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#gallery" class="nav-link">Galerie</a>
-                </li>
-                <li class="nav-item">
-                    <a href="boutique.html" class="nav-link">Boutique</a>
-                </li>
-                <li class="nav-item">
-                    <a href="formules.html" class="nav-link">Formules</a>
-                </li>
-                <li class="nav-item">
-                    <a href="ateliers.html" class="nav-link active">Ateliers</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#services" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="index.html#contact" class="nav-link">Contact</a>
-                </li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Accueil</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">À Propos</a></li>
+                <li class="nav-item"><a href="index.html#gallery" class="nav-link">Galerie</a></li>
+                <li class="nav-item"><a href="boutique.html" class="nav-link">Boutique</a></li>
+                <li class="nav-item"><a href="formules.html" class="nav-link">Formules</a></li>
+                <li class="nav-item"><a href="ateliers.html" class="nav-link active">Ateliers</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
                 <li class="nav-item cta">
                     <a href="tel:+33644177920" class="nav-link btn-call">
                         <i class="fas fa-phone"></i> <span>Appeler</span>
@@ -442,24 +437,145 @@
         </div>
     </nav>
 
-    <!-- Widget Simplybook uniquement -->
-    <section style="padding: 100px 0 50px; background: #f8f9fa;">
-        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
-            <div class="text-center mb-4">
-                <h2 style="color: var(--primary-color); font-family: var(--font-primary); font-size: 2.5rem; margin-bottom: 1rem;">
-                    Réservez votre atelier
-                </h2>
-                <p style="color: var(--text-color); font-size: 1.2rem; margin-bottom: 1rem;">
-                    Choisissez la date et l'heure qui vous conviennent pour participer à nos ateliers pâtisserie
-                </p>
-                <p style="color: var(--medium-gray); font-size: 1rem; margin-bottom: 2rem;">
-                    * En cas d'annulation de l'atelier, vous serez intégralement remboursé(e)
-                </p>
-            </div>
-            <!-- Le widget Simplybook s'affichera ici automatiquement -->
-            <div id="simplybook-widget" style="width: 100%; min-height: 600px;"></div>
+    <!-- Hero -->
+    <section class="ateliers-hero">
+        <div>
+            <h1 data-aos="fade-up">Nos Ateliers Pâtisserie</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Apprenez les secrets de la pâtisserie française dans une ambiance conviviale et créative</p>
         </div>
     </section>
+
+    <!-- Main Content -->
+    <main class="ateliers-main">
+        <div class="ateliers-container">
+
+            <!-- Info boxes -->
+            <div class="info-boxes" data-aos="fade-up">
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <h4>Petits groupes</h4>
+                    <p>Maximum 8 participants pour un accompagnement personnalisé</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-cookie-bite"></i>
+                    <h4>Repartez avec vos créations</h4>
+                    <p>Emportez vos réalisations pour les déguster en famille</p>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Tous niveaux</h4>
+                    <p>Nos ateliers s'adaptent à votre niveau, débutant ou confirmé</p>
+                </div>
+            </div>
+
+            <!-- Ateliers Cards -->
+            <div class="section-header" data-aos="fade-up">
+                <h2>Choisissez votre atelier</h2>
+                <p>Des expériences gourmandes pour tous les âges et toutes les occasions</p>
+            </div>
+
+            <div class="ateliers-grid">
+                <!-- Atelier Adultes -->
+                <div class="atelier-card" data-aos="fade-up" data-aos-delay="0">
+                    <span class="atelier-badge">Populaire</span>
+                    <div class="atelier-image" style="background-image: url('assets/images/patisserie2.jpg')"></div>
+                    <div class="atelier-content">
+                        <div class="atelier-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <h3>Atelier Adultes</h3>
+                        <p>Découvrez les techniques professionnelles et réalisez des pâtisseries dignes des plus grands chefs.</p>
+                        <div class="atelier-details">
+                            <div class="atelier-detail"><i class="fas fa-clock"></i> 3h</div>
+                            <div class="atelier-detail"><i class="fas fa-user-friends"></i> 4-8 pers.</div>
+                            <div class="atelier-detail"><i class="fas fa-utensils"></i> Matériel fourni</div>
+                        </div>
+                        <div class="atelier-price-row">
+                            <div class="atelier-price">65€ <span>/ pers.</span></div>
+                            <a href="#reservation" class="btn-reserver"><i class="fas fa-calendar-check"></i> Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anniversaire Enfants -->
+                <div class="atelier-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="atelier-badge">🎈 Kids</span>
+                    <div class="atelier-image" style="background-image: url('assets/images/macaron1.jpg')"></div>
+                    <div class="atelier-content">
+                        <div class="atelier-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3>Anniversaire Enfants</h3>
+                        <p>Offrez un anniversaire unique et gourmand ! Les enfants créent leurs propres pâtisseries.</p>
+                        <div class="atelier-details">
+                            <div class="atelier-detail"><i class="fas fa-clock"></i> 2h30</div>
+                            <div class="atelier-detail"><i class="fas fa-child"></i> 6-12 enfants</div>
+                            <div class="atelier-detail"><i class="fas fa-gift"></i> Goûter inclus</div>
+                        </div>
+                        <div class="atelier-price-row">
+                            <div class="atelier-price">180€ <span>/ groupe</span></div>
+                            <a href="#reservation" class="btn-reserver"><i class="fas fa-calendar-check"></i> Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Building -->
+                <div class="atelier-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="atelier-badge">Entreprise</span>
+                    <div class="atelier-image" style="background-image: url('assets/images/traiteur2.jpg')"></div>
+                    <div class="atelier-content">
+                        <div class="atelier-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Team Building</h3>
+                        <p>Renforcez la cohésion de votre équipe autour d'un défi pâtissier ludique et délicieux.</p>
+                        <div class="atelier-details">
+                            <div class="atelier-detail"><i class="fas fa-clock"></i> 3-4h</div>
+                            <div class="atelier-detail"><i class="fas fa-users"></i> 8-20 pers.</div>
+                            <div class="atelier-detail"><i class="fas fa-trophy"></i> Challenge</div>
+                        </div>
+                        <div class="atelier-price-row">
+                            <div class="atelier-price">Sur devis</div>
+                            <a href="tel:+33644177920" class="btn-reserver"><i class="fas fa-phone"></i> Nous appeler</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Réservation -->
+            <section class="reservation-section" id="reservation" data-aos="fade-up">
+                <div class="reservation-header">
+                    <h2><i class="fas fa-calendar-alt"></i> Réservez votre atelier</h2>
+                    <div class="reservation-note">
+                        <i class="fas fa-info-circle"></i>
+                        Annulation gratuite jusqu'à 48h avant l'atelier
+                    </div>
+                </div>
+                
+                <div class="simplybook-container" id="simplybook-widget"></div>
+            </section>
+
+            <!-- Contact rapide -->
+            <div class="contact-rapide" data-aos="fade-up">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Par téléphone</h4>
+                    <a href="tel:+33644177920">06 44 17 79 20</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Par email</h4>
+                    <a href="mailto:entremets-et-saveurs@orange.fr">entremets-et-saveurs@orange.fr</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Notre adresse</h4>
+                    <p>Hameau de Rebelle, 11240 Montgradail</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -467,16 +583,12 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="assets/images/logo.jpg" alt="Entremets et Saveurs - Logo" class="footer-logo-image">
+                        <img src="assets/images/logo.jpg" alt="Entremets et Saveurs" class="footer-logo-image">
                     </div>
-                    <p>L'art de la pâtisserie revisité avec passion et créativité depuis 2019.</p>
+                    <p>L'art de la pâtisserie revisité avec passion et créativité.</p>
                     <div class="footer-social">
-                        <a href="https://www.facebook.com/entremetsetsaveurs/" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/entremetsetsaveurs/" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <a href="https://www.facebook.com/entremetsetsaveurs/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/entremetsetsaveurs/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -484,52 +596,27 @@
                     <h4>Navigation</h4>
                     <ul>
                         <li><a href="index.html">Accueil</a></li>
-                        <li><a href="index.html#about">À Propos</a></li>
-                        <li><a href="index.html#gallery">Galerie</a></li>
                         <li><a href="boutique.html">Boutique</a></li>
                         <li><a href="formules.html">Formules</a></li>
                         <li><a href="ateliers.html">Ateliers</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-services">
-                    <h4>Nos Ateliers</h4>
-                    <ul>
-                        <li><a href="#ateliers">Ateliers adultes</a></li>
-                        <li><a href="#ateliers">Anniversaires enfants</a></li>
-                        <li><a href="#ateliers">Team building</a></li>
-                        <li><a href="#ateliers">Cours privés</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-contact">
-                    <h4>Réservations</h4>
+                    <h4>Contact</h4>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+33644177920">+33 6 44 17 79 20</a>
+                        <a href="tel:+33644177920">06 44 17 79 20</a>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-envelope"></i>
                         <a href="mailto:entremets-et-saveurs@orange.fr">entremets-et-saveurs@orange.fr</a>
                     </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Montgradail, France</span>
-                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2024 Entremets et Saveurs. Tous droits réservés.</p>
-                    <div class="footer-legal">
-                        <a href="#" onclick="openPrivacyModal()">Mentions légales</a>
-                        <a href="#" onclick="openPrivacyModal()">Protection des données</a>
-                        <a href="#" onclick="openCookieSettings()">Paramètres cookies</a>
-                    </div>
-                </div>
+                <p>&copy; 2024 Entremets et Saveurs. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -537,43 +624,69 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
+        AOS.init({ duration: 800, once: true });
 
-        // Mobile menu functionality
+        // Mobile menu
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
 
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-        }
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // Smooth scroll to reservation
+        document.querySelectorAll('a[href="#reservation"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
         });
     </script>
     
-    <!-- Simplybook Widget Scripts -->
-    <script src="//widget.simplybook.it/v2/widget/widget.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var widget = new SimplybookWidget({"widget_type":"iframe","url":"https:\/\/entremetsetsaveurs.simplybook.it","theme":"default","theme_settings":{"timeline_hide_unavailable":"1","hide_past_days":"0","timeline_show_end_time":"0","timeline_modern_display":"as_slots","sb_base_color":"#d22080","display_item_mode":"block","booking_nav_bg_color":"#d22080","body_bg_color":"#f2f2f2","sb_review_image":"2","sb_review_image_preview":"\/uploads\/entremetsetsaveurs\/image_files\/preview\/6c7bf0721aaa9746f66c31c9ee774a10.jpg","dark_font_color":"#040846","light_font_color":"#ffffff","btn_color_1":"#215268","sb_company_label_color":"#ffffff","hide_img_mode":"0","show_sidebar":"1","sb_busy":"#c7b3b3","sb_available":"#d6ebff"},"timeline":"modern","datepicker":"top_calendar","is_rtl":false,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":{"provider":"2"}},"container_id":"simplybook-widget"});
+    <!-- Simplybook Widget -->
+    <script src="//widget.simplybook.it/v2/widget/widget.js"></script>
+    <script>
+        var widget = new SimplybookWidget({
+            "widget_type": "iframe",
+            "url": "https://entremetsetsaveurs.simplybook.it",
+            "theme": "default",
+            "theme_settings": {
+                "timeline_hide_unavailable": "1",
+                "hide_past_days": "0",
+                "timeline_show_end_time": "0",
+                "timeline_modern_display": "as_slots",
+                "sb_base_color": "#c41e3a",
+                "display_item_mode": "block",
+                "booking_nav_bg_color": "#c41e3a",
+                "body_bg_color": "#faf8f5",
+                "sb_review_image": "2",
+                "dark_font_color": "#3d3d3d",
+                "light_font_color": "#ffffff",
+                "btn_color_1": "#8b5a3c",
+                "sb_company_label_color": "#ffffff",
+                "hide_img_mode": "0",
+                "show_sidebar": "1",
+                "sb_busy": "#e0e0e0",
+                "sb_available": "#d6ebff"
+            },
+            "timeline": "modern",
+            "datepicker": "top_calendar",
+            "is_rtl": false,
+            "app_config": {
+                "clear_session": 0,
+                "allow_switch_to_ada": 0,
+                "predefined": { "provider": "2" }
+            },
+            "container_id": "simplybook-widget"
+        });
     </script>
     
-    <!-- Christmas Mode Script -->
     <script src="src/script.js"></script>
 </body>
 </html>

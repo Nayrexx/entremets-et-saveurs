@@ -4,6 +4,60 @@ let galleryImages = [];
 let isLoading = false;
 let navbarHeight = 0;
 
+// === POP-UP BÛCHES AUTO (après chargement) ===
+function showBuchesPopup() {
+    // Vérifier si l'utilisateur a choisi de ne plus voir aujourd'hui
+    const dontShow = localStorage.getItem('buchesPopupDontShow');
+    if (dontShow) {
+        const savedDate = new Date(dontShow);
+        const today = new Date();
+        // Si c'est le même jour, ne pas afficher
+        if (savedDate.toDateString() === today.toDateString()) {
+            return;
+        }
+    }
+    
+    // Afficher la popup après un délai
+    setTimeout(() => {
+        const popup = document.getElementById('buches-popup');
+        if (popup) {
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }, 1500); // 1.5 secondes après le chargement
+}
+
+function closeBuchesPopup() {
+    const popup = document.getElementById('buches-popup');
+    if (popup) {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function setDontShowAgain(checked) {
+    if (checked) {
+        localStorage.setItem('buchesPopupDontShow', new Date().toISOString());
+    } else {
+        localStorage.removeItem('buchesPopupDontShow');
+    }
+}
+
+// Fermer popup en cliquant à l'extérieur
+document.addEventListener('click', function(e) {
+    const popup = document.getElementById('buches-popup');
+    if (e.target === popup) {
+        closeBuchesPopup();
+    }
+});
+
+// Fermer avec Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeBuchesPopup();
+    }
+});
+
 // === ADMIN SETTINGS CHECK ===
 function checkAdminSettings() {
     // Check Noel mode
@@ -343,6 +397,9 @@ function initLoadingScreen() {
         // Remove loading screen after animation
         setTimeout(() => {
             loadingScreen.style.display = 'none';
+            
+            // Afficher la popup des bûches après le chargement
+            showBuchesPopup();
         }, 500);
     }, 2500);
 }
